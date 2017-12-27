@@ -52,7 +52,6 @@ IP：202.119.191.11
       [root@vpn-ldap ~]# yum install openssl openssl-devel lzo  openvpn easy-rsa  -y
 
 ###4.3生成密钥和证书 ###
-
 ###修改vars文件信息 ###
      [root@vpn-ldap ~]# cd /usr/share/easy-rsa/2.0/
      [root@vpn-ldap 2.0]# vim vars 
@@ -64,32 +63,23 @@ IP：202.119.191.11
      export KEY_ORG="CPU"
      export KEY_EMAIL="sjn@cpu.edu.cn"
      export KEY_OU="NOC"
-
 ###重新加载环境变量 ###
      [root@vpn-ldap 2.0]# source vars
-
 ###清除所有证书和相关文件 ###
      [root@vpn-ldap 2.0]# ./clean-all 
-
 ###生成新的根证书和根秘钥 ###
      [root@vpn-ldap 2.0]# ./build-ca 
-
 ###给服务器端生成证书和秘钥 ###
     [root@vpn-ldap 2.0]# ./build-key-server server
-
 ###给vpn客户端创建证书和秘钥，这里我们给client创建 ###
      [root@vpn-ldap 2.0]# ./build-key client
-
 ###生成Diffie Hellman文件，生成过程可能有点慢，等待一会就好 ###
      [root@vpn-ldap 2.0]# ./build-dh 
-
 ###生成ta.key文件（防DDos攻击、UDP淹没等恶意攻击） ###
      [root@vpn-ldap 2.0]# openvpn --genkey --secret keys/ta.key
-
 ###在openvpn的配置目录下新建一个keys目录 ###
      [root@vpn-ldap ~]# mkdir -p /etc/openvpn/keys
- 
-###将openvpn服务端需要用到的证书和秘钥复制到/etc/openvpn/keys目录下 ###
+ ###将openvpn服务端需要用到的证书和秘钥复制到/etc/openvpn/keys目录下 ###
 [root@vpn-ldap ~]# cp /usr/share/easy-rsa/2.0/keys/{ca.crt,server.{crt,key},dh2048.pem,ta.key} /etc/openvpn/keys/
 
 
