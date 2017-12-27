@@ -36,21 +36,26 @@ IP：202.119.191.11
 ## 4 安装openvpn ##
 
 ###4.1基础配置 ###
-    [root@vpn-ldap ~]# rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-    [root@vpn-ldap ~]# sed -i 's@#b@b@g' /etc/yum.repos.d/epel.repo
-    [root@vpn-ldap ~]# sed  -i 's@mirrorlist@#mirrorlist@g' /etc/yum.repos.d/epel.repo
-    [root@vpn-ldap ~]# echo "*/10 * * * * /usr/sbin/ntpdate asia.pool.ntp.org  &>/dev/null" >/var/spool/cron/root
-    [root@vpn-ldap ~]# crontab -l
-    */10 * * * * /usr/sbin/ntpdate asia.pool.ntp.org  &>/dev/null
+     [root@vpn-ldap ~]# rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+    
+     [root@vpn-ldap ~]# sed -i 's@#b@b@g' /etc/yum.repos.d/epel.repo
+    
+     [root@vpn-ldap ~]# sed  -i 's@mirrorlist@#mirrorlist@g' /etc/yum.repos.d/epel.repo
+    
+     [root@vpn-ldap ~]# echo "*/10 * * * * /usr/sbin/ntpdate asia.pool.ntp.org  &>/dev/null" >/var/spool/cron/root
+    
+     [root@vpn-ldap ~]# crontab -l
+    
+     */10 * * * * /usr/sbin/ntpdate asia.pool.ntp.org  &>/dev/null
 
 ###4.2安装openvpn ###
-     [root@vpn-ldap ~]# yum install openssl openssl-devel lzo  openvpn easy-rsa  -y
+      [root@vpn-ldap ~]# yum install openssl openssl-devel lzo  openvpn easy-rsa  -y
 
 ###4.3生成密钥和证书 ###
 
 ###修改vars文件信息 ###
-    [root@vpn-ldap ~]# cd /usr/share/easy-rsa/2.0/
-    [root@vpn-ldap 2.0]# vim vars 
+     [root@vpn-ldap ~]# cd /usr/share/easy-rsa/2.0/
+     [root@vpn-ldap 2.0]# vim vars 
 
 ###修改下面几项 ###
      export KEY_COUNTRY="CN"
